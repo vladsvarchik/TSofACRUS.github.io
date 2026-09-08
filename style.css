@@ -1,0 +1,489 @@
+/* ===== ПЕРЕМЕННЫЕ (темы) ===== */
+:root {
+    /* Ночная тема (по умолчанию) */
+    --bg-body: #1a1a1a;
+    --bg-wrapper: #222;
+    --bg-hover: #2d2d2d;
+    --bg-warning: #2e1f1a;
+    --bg-author: #1e1e1e;
+    --text-main: #e0dcd6;
+    --text-light: #a89f94;
+    --text-muted: #6a6058;
+    --text-heading: #f0ece6;
+    --text-warning: #d97a6a;
+    --border-default: #333;
+    --border-light: #3a3a3a;
+    --border-accent: #5a4c3e;
+    --shadow: 0 10px 40px rgba(0,0,0,0.6);
+    --link-color: #c4b5a6;
+    --link-hover: #f0ece6;
+    --toc-hover-bg: #2d2d2d;
+    --toc-border: #333;
+    --divider-gradient: #5a4c3e;
+}
+
+/* Светлая тема — класс на body */
+body.light-theme {
+    --bg-body: #f2ede6;
+    --bg-wrapper: #fffcf7;
+    --bg-hover: #e8e0d8;
+    --bg-warning: #f5e8e0;
+    --bg-author: #f0ebe4;
+    --text-main: #1e1a16;
+    --text-light: #5a4c3e;
+    --text-muted: #8a7a6a;
+    --text-heading: #1e1a16;
+    --text-warning: #b84a3a;
+    --border-default: #ddd;
+    --border-light: #ccc;
+    --border-accent: #b8a090;
+    --shadow: 0 4px 20px rgba(0,0,0,0.07);
+    --link-color: #7a5a3a;
+    --link-hover: #1e1a16;
+    --toc-hover-bg: #e8e0d8;
+    --toc-border: #ddd;
+    --divider-gradient: #b8a090;
+}
+
+/* ===== ОБЩИЕ СТИЛИ ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.7;
+    padding: 40px 20px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg-wrapper);
+    padding: 50px 60px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* ===== ШАПКА ===== */
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    color: var(--text-heading);
+    margin-bottom: 6px;
+    transition: color 0.3s;
+}
+header h1 a {
+    color: var(--text-heading);
+    text-decoration: none;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-style: italic;
+    transition: color 0.3s;
+}
+
+/* ===== КНОПКА ПЕРЕКЛЮЧЕНИЯ ===== */
+.theme-toggle {
+    margin-top: 16px;
+}
+.theme-toggle button {
+    background: var(--bg-hover);
+    color: var(--text-main);
+    border: 1px solid var(--border-default);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.theme-toggle button:hover {
+    background: var(--border-accent);
+    color: var(--text-heading);
+    border-color: var(--border-accent);
+}
+.theme-toggle .icon {
+    font-size: 1.2rem;
+}
+
+/* ===== РАЗДЕЛИТЕЛЬ ===== */
+.divider {
+    margin: 25px 0 30px;
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--divider-gradient), transparent);
+}
+
+/* ===== ВСТУПЛЕНИЕ ===== */
+.intro p {
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+}
+.warning {
+    background: var(--bg-warning);
+    border-left: 4px solid var(--text-warning);
+    padding: 18px 22px;
+    margin: 30px 0;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s;
+}
+.warning strong {
+    color: var(--text-warning);
+}
+
+/* ===== ОГЛАВЛЕНИЕ ===== */
+.toc h2 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 40px 0 20px;
+    letter-spacing: 0.5px;
+    color: var(--text-heading);
+}
+.toc-group {
+    margin-bottom: 20px;
+}
+.toc-group-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    font-weight: 300;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    margin: 25px 0 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-default);
+}
+.toc-group:first-of-type .toc-group-title {
+    margin-top: 0;
+}
+.toc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.toc-grid a {
+    color: var(--link-color);
+    text-decoration: none;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--toc-border);
+    transition: 0.2s;
+    font-size: 1.05rem;
+}
+.toc-grid a:hover {
+    color: var(--link-hover);
+    background: var(--toc-hover-bg);
+    border-radius: 4px;
+    padding-left: 18px;
+}
+.toc-note {
+    margin-top: 10px;
+}
+.divider-light {
+    display: block;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--divider-gradient), transparent);
+    margin: 10px 0;
+}
+
+/* ===== БЛОК АВТОРА ===== */
+.author {
+    margin: 50px 0 30px;
+    padding: 25px 30px;
+    background: var(--bg-author);
+    border-radius: 8px;
+    border: 1px solid var(--border-default);
+    text-align: center;
+    transition: background 0.3s, border-color 0.3s;
+}
+.author-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+.author-name {
+    font-size: 1.2rem;
+    color: var(--text-heading);
+    margin-bottom: 10px;
+}
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 20px;
+    margin: 12px 0 16px;
+}
+.social-links a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.2s;
+    border-bottom: 1px solid transparent;
+}
+.social-links a:hover {
+    color: var(--link-hover);
+    border-bottom-color: var(--text-warning);
+}
+.social-icon {
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 1rem;
+}
+.author-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+/* ===== СТИЛИ ДЛЯ СТРАНИЦ ГЛАВ ===== */
+.chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 30px;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.chapter-nav a {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--border-accent);
+    transition: 0.2s;
+}
+.chapter-nav a:hover {
+    color: var(--link-hover);
+    border-bottom-color: var(--link-hover);
+}
+.chapter-nav .disabled {
+    color: var(--text-muted);
+    border: none;
+    cursor: default;
+}
+.chapter-nav.bottom {
+    margin-top: 40px;
+    border-top: 1px solid var(--border-default);
+    padding-top: 20px;
+}
+
+.alt-ending-link {
+    margin: 30px 0 20px;
+    padding: 15px 20px;
+    background: var(--bg-warning);
+    border-left: 4px solid var(--text-warning);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+.alt-ending-link a {
+    color: var(--text-warning);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--text-warning);
+}
+.alt-ending-link a:hover {
+    color: var(--link-hover);
+    border-bottom-color: var(--link-hover);
+}
+
+/* ===== КАРТИНКИ И ПОДПИСИ ===== */
+.content figure {
+    margin: 30px 0;
+    text-align: center;
+}
+.content figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.content figcaption {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.5;
+    padding: 0 10px;
+}
+.content figcaption strong {
+    color: var(--text-heading);
+    font-style: normal;
+}
+
+.content p {
+    margin: 1.2rem 0;
+}
+
+/* ===== ФУТЕР ===== */
+footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-default);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+footer a {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--border-accent);
+    transition: 0.2s;
+}
+footer a:hover {
+    color: var(--link-hover);
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 700px) {
+    body {
+        padding: 20px 12px;
+    }
+    .wrapper {
+        padding: 30px 25px;
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+    .toc-grid a {
+        font-size: 0.95rem;
+    }
+    .chapter-nav {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .social-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+/* ===== ПЛАН-СПИСОК ===== */
+.plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 30px;
+    counter-reset: plan-counter;
+}
+
+.plan-list li {
+    position: relative;
+    padding: 12px 0 12px 60px;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    transition: 0.2s;
+}
+
+.plan-list li:last-child {
+    border-bottom: none;
+}
+
+.plan-list .plan-num {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background: var(--bg-hover);
+    color: var(--text-warning);
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+    border: 1px solid var(--border-accent);
+    transition: 0.2s;
+}
+
+.plan-list li:hover .plan-num {
+    background: var(--border-accent);
+    color: var(--text-heading);
+}
+/* Диалоги */
+.dialogue {
+    margin: 16px 0 16px 20px;
+    padding-left: 8px;
+    border-left: 3px solid var(--text-warning);
+    background: var(--bg-hover);
+    border-radius: 4px;
+}
+
+.dialogue p {
+    margin: 8px 0;
+    padding: 4px 12px;
+}
+
+.dialogue strong.billy {
+    color: #66ccff;
+}
+
+.dialogue strong.nook {
+    color: #d97a6a;
+}
+
+/* ===== ПРЕДУПРЕЖДЕНИЕ АЛЬТЕРНАТИВНОЙ КОНЦОВКИ ===== */
+.alt-ending-warning {
+    margin: 20px 0 30px;
+    padding: 28px 25px;
+    background: var(--bg-warning);
+    border-left: 4px solid var(--text-warning);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.warning-inner {
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+.warning-btn {
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: 0.2s;
+    font-family: 'Georgia', serif;
+    border: none;
+    cursor: pointer;
+}
+
+.warning-btn.back-btn {
+    background: var(--bg-hover);
+    color: var(--text-main);
+    border: 1px solid var(--border-default);
+}
+
+.warning-btn.back-btn:hover {
+    background: var(--border-accent);
+    color: var(--text-heading);
+}
+
+.warning-btn.home-btn {
+    background: #3a6a8a;
+    color: #fff;
+}
+
+.warning-btn.home-btn:hover {
+    background: #2a5a7a;
+    transform: scale(1.02);
+}
